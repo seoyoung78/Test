@@ -54,7 +54,7 @@
              <form method="post" action="exchangerefund">
                  <div>
                      <div id="select-reason">
-                         <input type="radio" name="reason"> 상품이 마음에 안 들어서<br>
+                         <input type="radio" name="reason" value=""> 상품이 마음에 안 들어서<br>
                          <input type="radio" name="reason"> 상품에 하자가 있어서<br>
                          <input type="radio" name="reason"> 서비스에 불만이 있어서<br>
                          <input type="radio" name="reason"> 배송이 늦어서<br>
