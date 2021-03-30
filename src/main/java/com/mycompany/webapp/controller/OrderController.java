@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,15 @@ public class OrderController {
 	@Autowired
 	private CartService cartService;
 	
+//	@GetMapping("/cart")
+//	public String openCart(Model model) {
+//		List<Cart> clist = cartService.getCart();
+//		logger.info(String.valueOf(clist.size()));
+//		model.addAttribute("clist",clist);
+//		return "order/cart";
+//	}
+	
+	//@RequestMapping(value="/cart", method = {RequestMethod.GET, RequestMethod.POST})
 	@GetMapping("/cart")
 	public String openCart(String pageNo, Model model, HttpSession session) {
 		int intPageNo = 1;
@@ -37,12 +47,17 @@ public class OrderController {
 			intPageNo = Integer.parseInt(pageNo);
 		}
 		int totalRows = cartService.getTotalRows();
-		Pager pager = new Pager(6, 5, totalRows, intPageNo);
+		Pager pager = new Pager(5, 5, totalRows, intPageNo);
 		session.setAttribute("pager", pager);
 		
-		List<Cart> clist = cartService.getCart();
-		logger.info(String.valueOf(clist.size()));
+		List<Cart> clist = cartService.getCart(pager);
+		//logger.info(String.valueOf(clist.size()));
+		//logger.info(clist.getIndex(1).getIndex);
 		model.addAttribute("clist",clist);
+		model.addAttribute("pager", pager);
+		
+		Cart cart = new Cart();
+		//cart.setUserId("a1@gmail.com");
 		return "order/cart";
 	}
 	
@@ -52,8 +67,30 @@ public class OrderController {
 		return "redirect:/product";
 	}
 	
-	@PostMapping("/delcart")
-	public String delCart() {
+	@GetMapping("/delcart")
+	public String delCart(int productNo) {
+		logger.info("실행");
+		Cart cart = new Cart();
+		cart.setUserId("a1@gmail.com");
+		cart.setProductNo(productNo);
+//		cart.setAmount(2);
+//		cart.setAllprice(20000);
+//		cart.setRegdate(new Date());
+//		cart.setProductName("샘플1");
+//		cart.setPrice(10000);
+//		cart.setImgOname("26.jpg");
+//		cart.setImgSname("132546-1231");
+//		cart.setImgType("image");
+		logger.info(String.valueOf(cart.getProductNo()));
+		
+		cartService.deleteCart(cart.getProductNo(), cart.getUserId());
+		
+		return "redirect:/cart";
+	}
+	
+	@PostMapping("/updateamount")
+	public String updateAmount(Cart cart) {
+		cartService.updateAmount(cart);
 		return "redirect:/cart";
 	}
 	

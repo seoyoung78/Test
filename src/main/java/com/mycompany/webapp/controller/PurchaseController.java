@@ -36,8 +36,13 @@ public class PurchaseController {
 	}
 	
 	@GetMapping("/review")
-	public String openReview(int ono, int pno, String uid) {
-		
+	public String openReview() {
+		Reviews review = new Reviews();
+		review.setOrderNo(3);
+		review.setProductName("트리");
+		review.setUserId("a1@gmail.com");
+		logger.info(review.getProductName());
+		logger.info(review.getUserId());
 		return "purchase/review";
 	}
 	

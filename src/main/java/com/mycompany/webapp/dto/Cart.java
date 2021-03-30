@@ -10,7 +10,7 @@ public class Cart {
 	private Date regdate;	//카트 등록일
 	private String productName;	//상품 이름
 	private int price;	//상품 가격
-	private String imgOname;
+	private String imgOname;	//상품 이지미
 	private String imgSname;
 	private String imgType;
 	
@@ -32,11 +32,11 @@ public class Cart {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getPrice() {
-		return price;
+	public int getAllprice() {
+		return allprice;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setAllprice(int allprice) {
+		this.allprice = allprice;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -50,11 +50,11 @@ public class Cart {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public int getAllprice() {
-		return allprice;
+	public int getPrice() {
+		return price;
 	}
-	public void setAllprice(int allprice) {
-		this.allprice = allprice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getImgOname() {
 		return imgOname;
@@ -74,4 +74,5 @@ public class Cart {
 	public void setImgType(String imgType) {
 		this.imgType = imgType;
 	}
+	
 }

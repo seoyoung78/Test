@@ -43,11 +43,11 @@
                
                <div class="card-body">
                    <div class="input-group form-group">
-                       <input type="text" class="form-control" id="rorderno" name="rorderno" value="${reviews.orderNo}" readonly>
+                       <input type="text" class="form-control" value="${reviews.orderNo}" readonly>
                    </div>
 
                    <div class="input-group form-group">
-                       <input type="text" class="form-control" id="rproductno" name="rproductno" value="${reviews.productName}" readonly>
+                       <input type="text" class="form-control" value="${reviews.productName}" readonly>
                    </div>
 
                    <!-- 한 줄 평 작성-->

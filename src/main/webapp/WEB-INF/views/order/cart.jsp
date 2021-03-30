@@ -27,23 +27,19 @@
                         <tbody>
                         	<c:forEach var="cart" items="${clist}">
                         		<tr>
-                                <td class="cart-img-line">
-                                    <div class="cart-img">
-                                        <img src="<%=application.getContextPath() %>/resources/images/트리/장식용품/4.jpg">
-                                    </div>
-                                </td>
-                                <td class="cart-img-name">
-                                    <p class="text">${cart.productName}</p>
-                                </td>
-                                <td class="cart-img-rightline">${cart.price}</td>
-                                <td class="cart-img-rightline"><input type="text" value="${cart.amount}"></td>
-                                <td class="cart-img-rightline">${cart.allprice}</td>
-                                <td>
-                                    <form method="post" action="delcart">
-                                    	<input type="button" class="btn btn-primary btn-sm" value="X" style="padding-right:9px;">
-                                    </form>
-                                </td>
-                            </tr>
+	                                <td class="cart-img-line">
+	                                    <div class="cart-img">
+	                                        <img src="<%=application.getContextPath() %>/resources/images/트리/장식용품/4.jpg">
+	                                    </div>
+	                                </td>
+	                                <td class="cart-img-name">
+	                                    <p class="text">${cart.productName}</p>
+	                                </td>
+	                                <td class="cart-img-rightline">${cart.price}</td>
+	                                <td class="cart-img-rightline"><input type="text" value="${cart.amount}"><a class="btn btn-sm" href="updateamount?productNo=${cart.productNo}">수정</a></td>
+	                                <td class="cart-img-rightline">${cart.allprice}</td>
+	                                <td><a class="btn btn-primary btn-sm" style="padding-right:9px;" href="delcart?productNo=${cart.productNo}">X</a></td>
+	                            </tr>
                         	</c:forEach>                        
                         </tbody>
                     </table>
@@ -82,43 +78,35 @@
 
             </div>
 
-            <!--페이지 넘어가는 부분-->
-            <div class="pagination-cart">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                           <c:if test="${pager.groupNo>1}">
-                           	 <a class="page-link" href="cart?pageNo=${pager.startPageNo-1}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                           </c:if>                    
-                          
-                        </li>
-                        
-                        <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-	                        <c:if test="${pager.pageNo!=i}">
-	                        	<li class="page-item">
-	                            <a class="page-link" href="cart?pageNo=${i}">${i}</a>
-	                        </li>
-	                        </c:if>
-	                        <c:if test="${pager.pageNo==i}">
-	                        	<li class="page-item">
-	                            <a class="page-link" href="cart?pageNo=${i}">${i}</a>
-	                        </li>
-	                        </c:if>
-                        </c:forEach>
-                        
-                        <c:if test="${pager.groupNo<pager.totalGroupNo}">
-	                        <li class="page-item">
-	                            <a class="page-link" href="cart?pageNo=${pager.endPageNo+1}" aria-label="Next">
-	                                <span aria-hidden="true">&raquo;</span>
-	                            </a>
-	                        </li>
-                        </c:if>
-                        
-                    </ul>
-                </nav>
-            </div>
+			<div class="text-center">									
+				<!-- [처음][이전] 1 2 3 4 5 [다음][맨끝] -->
+				<a class="btn btn-outline-primary btn-sm"
+					href="cart?pageNo=1">처음</a>
+				
+				<c:if test="${pager.groupNo>1}">
+					<a class="btn btn-outline-info btn-sm"
+					href="cart?pageNo=${pager.startPageNo-1}">이전</a>
+				</c:if>
+				
+				<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+					<c:if test="${pager.pageNo!=i}">
+						<a class="btn btn-outline-success btn-sm"
+						href="cart?pageNo=${i}">${i}</a>
+					</c:if>
+					<c:if test="${pager.pageNo==i}">
+						<a class="btn	btn-danger btn-sm"
+						href="cart?pageNo=${i}">${i}</a>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${pager.groupNo<pager.totalGroupNo}">
+					<a class="btn btn-outline-info btn-sm"
+					href="cart?pageNo=${pager.endPageNo+1}">다음</a>
+				</c:if>
+				
+				<a class="btn btn-outline-primary btn-sm"
+					href="cart?pageNo=${pager.totalPageNo}">맨끝</a>				
+			</div>
 
         </div>
     </div>
