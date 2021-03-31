@@ -7,5 +7,7 @@
 		<typeAlias type="com.mycompany.webapp.dto.ProductsRefund" alias="productsRefund"/>
 		<typeAlias type="com.mycompany.webapp.dto.Reviews" alias="reviews"/>
 		<typeAlias type="com.mycompany.webapp.dto.Pager" alias="pager"/>
+		<typeAlias type="com.mycompany.webapp.dto.Orders" alias="orders"/>
+		<typeAlias type="com.mycompany.webapp.dto.OrderProducts" alias="orderProducts"/>
 	</typeAliases>
 </configuration>

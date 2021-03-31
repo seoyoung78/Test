@@ -4,6 +4,19 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <link href="<%=application.getContextPath() %>/resources/css/cart.css" rel="stylesheet" type="text/css"/>
 
+<!-- <script>
+	const getOrder = () => {
+		for()
+		
+		$.ajax({
+			url: "order",
+			data: {},
+			method: "post"
+		}).then(data => {
+			
+		});
+	};
+</script> -->
 
   <!-- 컨텐츠 -->
         <div class="cart-content">
@@ -14,7 +27,8 @@
 
 				<!-- 카트 목록 -->
                 <div class="cart-list">
-                    <table class="cart-table">
+                	
+                		<table class="cart-table">
                         <thead>
                             <tr>
                                 <th colspan="2">아이템</th>
@@ -24,28 +38,44 @@
                                 <th>삭제</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        	<c:forEach var="cart" items="${clist}">
-                        		<tr>
-	                                <td class="cart-img-line">
-	                                    <div class="cart-img">
-	                                        <img src="<%=application.getContextPath() %>/resources/images/트리/장식용품/4.jpg">
-	                                    </div>
-	                                </td>
-	                                <td class="cart-img-name">
-	                                    <p class="text">${cart.productName}</p>
-	                                </td>
-	                                <td class="cart-img-rightline">${cart.price}</td>
-	                                <td class="cart-img-rightline"><input type="text" value="${cart.amount}"><a class="btn btn-sm" href="updateamount?productNo=${cart.productNo}">수정</a></td>
-	                                <td class="cart-img-rightline">${cart.allprice}</td>
-	                                <td><a class="btn btn-primary btn-sm" style="padding-right:9px;" href="delcart?productNo=${cart.productNo}">X</a></td>
-	                            </tr>
+                         
+                        <tbody>   
+                        	<c:set var="sum" value="0"/>
+                        	<c:set var="count" value="0"/>                      
+                        		<c:forEach var="cart" items="${clist}">                        		                       		
+                        			<tr>
+                                <td class="cart-img-line">
+                                    <div class="cart-img">
+                                        <img src="${cart.imgSname}">
+                                    </div>
+                                </td>
+                                <td class="cart-img-name">
+                                    <p class="text">${cart.productName}</p>
+                                </td>
+                                <td class="cart-img-rightline">${cart.price}</td>
+                                <td class="cart-img-rightline">
+                                	<form method="post" action="updateamount">
+                                		<input type="text" name="amount" value="${cart.amount}">
+                                		<input type="hidden" name="productNo" value="${cart.productNo}"/>
+                               			<input type="hidden" name="price"  value="${cart.price}"/>
+                              				<input type="hidden" name="userId" value="${cart.userId}"/>
+                                		<button  class="btn btn-sm" type="submit">변경</button>
+                                	</form>
+                                </td>
+                                <td class="cart-img-rightline">${cart.allPrice}</td>
+                                <td><a class="btn btn-primary btn-sm" style="padding-right:9px;" href="delcart?productNo=${cart.productNo}">X</a></td>
+                                <c:set var="sum" value="${sum+cart.allPrice}"/>
+                                <c:set var="count" value="${count+cart.amount}"/>   
+	                            </tr>                
                         	</c:forEach>                        
                         </tbody>
                     </table>
+                	
+                    
                 </div>
                 <div class="price-check">
-                    <table class="summary-table">
+                	           	
+                		<table class="summary-table">
                         <tr class="one-line">
                             <th colspan="2" class="summary-title">SUMMARY</th>
                         </tr>
@@ -55,11 +85,11 @@
                         </tr>
                         <tr>
                             <td>주문 수량</td>
-                            <td>1</td>
+                            <td>${count}</td>
                         </tr>
                         <tr class="three-line">
                             <td>주문 금액</td>
-                            <td>33,000</td>
+                            <td>${sum}</td>
                         </tr>
                         <tr>
                             <td>할인 금액</td>
@@ -67,15 +97,27 @@
                         </tr>
                         <tr>
                             <td class="estimated-payment">결제 예상 금액</td>
-                            <td class="estimated-payment">33,000</td>
+                            <td class="estimated-payment">${sum}</td>
                         </tr>
-                    </table>
+                    </table>         
 
 					<!-- 결제세부 창으로 넘어가는 버튼 -->
-                    <button class="btn btn-info btn-lg btn-block" onclick="location.href='<%=application.getContextPath() %>/order'">결제하기</button>
-
-                </div>
-
+									<form method="post" action="order">
+										<c:forEach var="cart" items="${clist}">										
+											<input type="hidden" name="productNo" value="${cart.productNo}"/>
+											<input type="hidden" name="userId" value="${cart.userId}"/>
+											<input type="hidden" name="amount" value="${cart.amount}">
+                    	<input type="hidden" name="allPrice"  value="${cart.allPrice}"/>
+                  		<input type="hidden" name="productName" value="${cart.productName}"/>
+                  		<input type="hidden" name="price" value="${cart.price}"/>
+                  		<input type="hidden" name="imgOname" value="${cart.imgOname}"/>
+                  		<input type="hidden" name="imgSname" value="${cart.imgSname}"/>
+                  		<input type="hidden" name="imgType" value="${cart.imgType}"/>
+										</c:forEach>
+                   <button class="btn btn-info btn-lg btn-block">결제하기</button>
+								</form>
+								 
+               </div>
             </div>
 
 			<div class="text-center">									
@@ -108,7 +150,6 @@
 					href="cart?pageNo=${pager.totalPageNo}">맨끝</a>				
 			</div>
 
-        </div>
     </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

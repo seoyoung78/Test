@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.OrderProductsDao">
+	<resultMap id="userResultMap" type="OrderProducts">
+		<result property="orderNo" column="order_no" />
+		<result property="productNo" column="product_no" />
+		<result property="amount" column="amount" />
+		<result property="price" column="price" />
+		<!-- <result property="reviewState" column="review_state" /> -->
+	</resultMap>
+
+	<insert id="createOrderproduct">
+		insert into order_products
+		(product_no, order_no,
+		amount, price, review_state)
+		values
+		(#{productNo}, #{orderNo},
+		#{amount}, #{price}, 0)
+	</insert>
+
+	<select id="readOrderproduct" resultType="orderproducts">
+		select o.order_no,
+		p.product_no, p.amount, p.price, p.review_state
+		from order o,
+		order_products p
+		where p.order_no = o.order_no
+		and p.product_no =
+		#{productNo}
+	</select>
+
+	<update id="updateOrderproduct">
+		update order_products set
+		p.product_no = #{productNo},
+		order_no = #{orderNo},
+		amount = #{amount},
+		price = #{price},
+		review_state = 0
+	</update>
+	<!-- <update id="updateReview"> update order_products set review_state = 
+		1; </update> <update id="deleteOrderproduct"> delete from order_products  where product_no = #{productNo} </update> -->
+</mapper>

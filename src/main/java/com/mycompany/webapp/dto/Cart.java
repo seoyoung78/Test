@@ -3,16 +3,19 @@ package com.mycompany.webapp.dto;
 import java.util.Date;
 
 public class Cart {
-	private int productNo;	//상품 번호
-	private String userId;	//사용자 아이디
-	private int amount;		//구매 수량
-	private int allprice;		//총 구매 가격
-	private Date regdate;	//카트 등록일
+	private int productNo;		//상품 번호
+	private String userId;		//사용자 아이디
+	private int amount;			//구매 수량
+	private int allPrice;		//총 구매 가격
+	private Date regdate;		//카트 등록일
 	private String productName;	//상품 이름
-	private int price;	//상품 가격
+	private int price;			//상품 가격
 	private String imgOname;	//상품 이지미
 	private String imgSname;
 	private String imgType;
+	
+	private int orderAmount;	//총 주문 수량
+	private int orderPrice;		//총 주문 가격
 	
 	public int getProductNo() {
 		return productNo;
@@ -32,11 +35,11 @@ public class Cart {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getAllprice() {
-		return allprice;
+	public int getAllPrice() {
+		return allPrice;
 	}
-	public void setAllprice(int allprice) {
-		this.allprice = allprice;
+	public void setAllPrice(int allPrice) {
+		this.allPrice = allPrice;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -56,6 +59,18 @@ public class Cart {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public int getOrderAmount() {
+		return orderAmount;
+	}
+	public void setOrderAmount(int orderAmount) {
+		this.orderAmount = orderAmount;
+	}
+	public int getOrderPrice() {
+		return orderPrice;
+	}
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
+	}
 	public String getImgOname() {
 		return imgOname;
 	}
@@ -74,5 +89,4 @@ public class Cart {
 	public void setImgType(String imgType) {
 		this.imgType = imgType;
 	}
-	
 }

@@ -51,9 +51,10 @@ public class PurchaseController {
 		reviewsService.saveReview(review);
 	}
 	
-	@PostMapping("/delreview")
-	public String delReview(int rno) {
-		reviewsService.deleteReview(rno);
+	@GetMapping("/delreview")
+	public String delReview(int reviewNo) {
+		String userId = "a1@gmail.com";
+		reviewsService.deleteReview(reviewNo, userId);		
 		return "redirect:/product";
 	}
 

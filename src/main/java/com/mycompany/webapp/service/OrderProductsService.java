@@ -13,9 +13,9 @@ import com.mycompany.webapp.dto.Cart;
 import com.mycompany.webapp.dto.Pager;
 
 @Service
-public class CartService {
+public class OrderProductsService {
 	private static final Logger logger =
-			LoggerFactory.getLogger(CartService.class);
+			LoggerFactory.getLogger(OrderProductsService.class);
 	
 	@Autowired
 	private CartDao cartDao;
@@ -26,7 +26,7 @@ public class CartService {
 	}
 	
 	public List<Cart> getCart(Pager pager, String userId) {
-		//logger.info(userId);
+		logger.info(userId);
 		List<Cart> list = cartDao.selectByPage(pager, userId);		
 		return list;
 	}

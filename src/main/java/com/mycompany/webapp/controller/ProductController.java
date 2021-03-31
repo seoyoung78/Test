@@ -23,7 +23,9 @@ public class ProductController {
 	
 	@GetMapping("/product")
 	public String openProduct(Model model) {
-		List<Reviews> rlist = reviewsService.getReview();
+		//int productNo = product.getProductNo();
+		int productNo = 1;
+		List<Reviews> rlist = reviewsService.getReview(productNo);
 		//logger.info(String.valueOf(rlist.size()));
 		model.addAttribute("rlist", rlist);
 				

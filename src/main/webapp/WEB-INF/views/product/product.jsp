@@ -171,7 +171,7 @@
                             <p>${reviews.reviewContent}</p>
                         </div>
                         <div class="col-md-2 review-part-right">
-                          	<a class="btn review-btn" href="delreview?reviewNo=${reviewNo}" onclick="alert('삭제되었습니다.')">remove</a>                         
+                        	<a class="btn review-btn" href="delreview?reviewNo=${reviews.reviewNo}">remove</a>                                                  	                         
                         </div>
                     </div>
                 	</div>

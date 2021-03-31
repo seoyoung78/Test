@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					 
+<mapper namespace="com.mycompany.webapp.dao.OrdersDao">
+
+	<resultMap id="userResultMap" type="orders">
+	  <result property="orderNo" column="order_no" />
+	  <result property="orderDate" column="order_date" />
+	  <result property="allPrice" column="allprice" />
+	  <result property="orderState" column="order_state" />
+	  <result property="userId" column="user_id" />
+	  <result property="zipCode" column="zip_code" />
+	  <result property="roadAddress" column="road_address" />
+	  <result property="detailAddress" column="detail_address" />
+	</resultMap>
+
+
+
+	<insert id="createOrder">
+		insert into orders
+		(order_no, order_date, all_price, order_state, user_id, zip_code, road_address, detail_address)
+		values
+		(#{orderNo}, #{orderDate}, #{allPrice}, 0, #{userId},#{zipCode},#{roadAddress},#{detailAddress})
+	</insert>
+
+
+	<select id="readOrder" resultType="orders">
+		select order_no, product_no, amount, price, review_state
+		from order_products
+		where order_no = (select order_no
+						from orders 
+						where order_no = #{orderNo})
+	</select>
+	
+
+	<update id="updateOrder">
+		update orders set
+		order_no = #{orderNo},
+		order_date = #{orderNo},
+		all_price = #{allPrice},
+		zip_code = #{zipCode},
+		road_address = #{roadAddress}
+		detail_address = #{detailAddress}
+		where
+		user_id = #{user_id}
+	</update>
+
+	<delete id="deleteOrder">
+		delete from orders
+		where order_no = #{orderNo}
+	</delete>
+
+</mapper>
