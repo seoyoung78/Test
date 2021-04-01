@@ -8,7 +8,8 @@ import com.mycompany.webapp.dto.ProductsRefund;
 
 @Mapper
 public interface ProductsRefundDao {
-	public List<ProductsRefund> selectAll();
+	
+	public List<ProductsRefund> selectAll(int orderNo);
 	public int insert(ProductsRefund productsefund);
 	public int update(ProductsRefund productsrefund);
 }

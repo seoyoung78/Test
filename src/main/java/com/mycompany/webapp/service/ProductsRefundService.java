@@ -13,16 +13,16 @@ public class ProductsRefundService {
 	@Autowired
 	private ProductsRefundDao refundDao;
 	
-	public List<ProductsRefund> getRefund() {
-		List<ProductsRefund> list = refundDao.selectAll();
+	public List<ProductsRefund> getRefund(int orderNo) {
+		List<ProductsRefund> list = refundDao.selectAll(orderNo);
 		return list;
 	}
 	
-	public void saveReview(ProductsRefund refund) {
+	/*public void saveReview(ProductsRefund refund) {
 		refundDao.insert(refund);
 	}
-
+	
 	public void updateRefund(ProductsRefund refund) {
 		refundDao.update(refund);
-	}
+	}*/
 }

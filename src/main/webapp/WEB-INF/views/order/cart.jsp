@@ -58,7 +58,7 @@
                                 		<input type="text" name="amount" value="${cart.amount}">
                                 		<input type="hidden" name="productNo" value="${cart.productNo}"/>
                                			<input type="hidden" name="price"  value="${cart.price}"/>
-                              				<input type="hidden" name="userId" value="${cart.userId}"/>
+                              			<input type="hidden" name="userId" value="${cart.userId}"/>
                                 		<button  class="btn btn-sm" type="submit">변경</button>
                                 	</form>
                                 </td>
@@ -102,20 +102,22 @@
                     </table>         
 
 					<!-- 결제세부 창으로 넘어가는 버튼 -->
-									<form method="post" action="order">
-										<c:forEach var="cart" items="${clist}">										
-											<input type="hidden" name="productNo" value="${cart.productNo}"/>
-											<input type="hidden" name="userId" value="${cart.userId}"/>
-											<input type="hidden" name="amount" value="${cart.amount}">
-                    	<input type="hidden" name="allPrice"  value="${cart.allPrice}"/>
-                  		<input type="hidden" name="productName" value="${cart.productName}"/>
-                  		<input type="hidden" name="price" value="${cart.price}"/>
-                  		<input type="hidden" name="imgOname" value="${cart.imgOname}"/>
-                  		<input type="hidden" name="imgSname" value="${cart.imgSname}"/>
-                  		<input type="hidden" name="imgType" value="${cart.imgType}"/>
-										</c:forEach>
-                   <button class="btn btn-info btn-lg btn-block">결제하기</button>
-								</form>
+					<form method="post" action="order">
+						<c:forEach var="cart" items="${clist}">										
+							<input type="hidden" name="productNo" value="${cart.productNo}"/>
+							<input type="hidden" name="userId" value="${cart.userId}"/>
+							<input type="hidden" name="amount" value="${cart.amount}">
+	                    	<input type="hidden" name="allPrice"  value="${cart.allPrice}"/>
+	                  		<input type="hidden" name="productName" value="${cart.productName}"/>
+	                  		<input type="hidden" name="price" value="${cart.price}"/>
+	                  		<input type="hidden" name="imgOname" value="${cart.imgOname}"/>
+	                  		<input type="hidden" name="imgSname" value="${cart.imgSname}"/>
+	                  		<input type="hidden" name="imgType" value="${cart.imgType}"/>	                  	
+						</c:forEach>
+						<input type="hidden" name="sum" value="${sum}"/>
+	                  	<input type="hidden" name="count" value="${count}"/>
+                  	 <button class="btn btn-info btn-lg btn-block">결제하기</button>
+					</form>
 								 
                </div>
             </div>

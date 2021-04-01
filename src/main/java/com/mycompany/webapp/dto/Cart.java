@@ -13,10 +13,7 @@ public class Cart {
 	private String imgOname;	//상품 이지미
 	private String imgSname;
 	private String imgType;
-	
-	private int orderAmount;	//총 주문 수량
-	private int orderPrice;		//총 주문 가격
-	
+		
 	public int getProductNo() {
 		return productNo;
 	}
@@ -58,18 +55,6 @@ public class Cart {
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public int getOrderAmount() {
-		return orderAmount;
-	}
-	public void setOrderAmount(int orderAmount) {
-		this.orderAmount = orderAmount;
-	}
-	public int getOrderPrice() {
-		return orderPrice;
-	}
-	public void setOrderPrice(int orderPrice) {
-		this.orderPrice = orderPrice;
 	}
 	public String getImgOname() {
 		return imgOname;

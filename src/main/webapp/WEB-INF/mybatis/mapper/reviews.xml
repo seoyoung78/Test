@@ -39,7 +39,7 @@
 	</select> -->
 	
 	<insert id="insert" parameterType="reviews">	
-		<selectKey keyProperty="reviewNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="review_no" resultType="int" order="BEFORE">
 			select seq_reviews_review_no.nextval from dual
 		</selectKey>	
 		insert into reviews
